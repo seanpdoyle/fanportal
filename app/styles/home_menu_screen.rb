@@ -1,25 +1,25 @@
 Teacup::Stylesheet.new :home_menu_screen do
   import :base
 
-  style :navigation,
-    color: :white.uicolor
+  style UIButton,
+    titleColor: :white.uicolor,
+    backgroundColor: :clear.uicolor
 
   style :close,
-    image: "home/ic_close".uiimage,
+    image: "home/ic_close",
     constraints: [
-      constrain(:left).equals(:superview, :left).plus(10),
-      constrain(:top).equals(:superview, :top).plus(16)
+      constrain_left(10),
+      constrain_top(16)
     ]
 
   style :logo,
-    image: "home/bg_fpLogo".uiimage,
+    image: "home/bg_fpLogo",
     constraints: [
       constrain(:right).equals(:superview, :right).minus(10),
-      constrain(:bottom).equals(:superview, :bottom).minus(10)
+      constrain(:bottom).equals(:superview, :bottom).minus(10),
     ]
 
   style :order,
-    extends: :navigation,
     title: "Order Collectible",
     constraints: [
       constrain(:left).equals(:superview, :left).plus(70),
@@ -27,7 +27,6 @@ Teacup::Stylesheet.new :home_menu_screen do
     ]
 
   style :collection,
-    extends: :navigation,
     title: "My Collection",
     constraints: [
       constrain(:left).equals(:superview, :left).plus(70),

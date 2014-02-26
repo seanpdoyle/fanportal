@@ -2,11 +2,12 @@ Teacup::Stylesheet.new :home_screen do
   import :base
 
   style :background,
-    image: "home/bg_metallica".uiimage,
+    image: "home/bg_metallica",
+    contentMode: UIViewContentModeScaleAspectFit,
     alpha: 0.3,
     constraints: [
-      :full_height,
-      constrain(:center_x).equals(:superview, :center_x)
+      :centered,
+      :full_height
     ]
 
   style :artist,
