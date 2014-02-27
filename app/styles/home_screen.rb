@@ -1,14 +1,8 @@
 Teacup::Stylesheet.new :home_screen do
   import :base
 
-  style :background,
-    image: "home/bg_metallica",
-    contentMode: UIViewContentModeScaleAspectFit,
-    alpha: 0.3,
-    constraints: [
-      :centered,
-      :full_height
-    ]
+  style :metallica, extends: :background,
+    image: "home/bg_metallica"
 
   style :artist,
     text: "Metallica",

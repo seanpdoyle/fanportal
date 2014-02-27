@@ -2,6 +2,8 @@ class HomeMenuScreen < PM::Screen
   stylesheet :home_menu_screen
 
   layout :modal do
+    @background   = subview(GRKBlurView, :blurred_background)
+
     @close        = subview UIButton, :close
     @order        = subview UIButton, :order
     @collection   = subview UIButton, :collection
@@ -10,6 +12,8 @@ class HomeMenuScreen < PM::Screen
   end
 
   def will_appear
+    @background.update
+
     @close.on :touch do
       close
     end

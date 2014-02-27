@@ -8,13 +8,14 @@ class OrderScreen < PM::Screen
       subview UIImageView, :header
       subview UILabel, :title
       subview UILabel, :byline
+      subview UILabel, :features_title
+
     end
   end
 
   def on_init
     set_nav_bar_button :left,
       title: "Cancel",
-      style: :navButton,
       action: :close
   end
 end

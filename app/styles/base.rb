@@ -17,4 +17,12 @@ Teacup::Stylesheet.new :base do
       :full
     ]
 
+  style :background,
+    contentMode: UIViewContentModeScaleAspectFill,
+    alpha: 0.3,
+    constraints: [
+      :centered,
+      :full_height
+    ]
+
 end
