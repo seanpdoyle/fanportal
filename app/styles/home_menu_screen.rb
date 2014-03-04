@@ -27,17 +27,20 @@ Teacup::Stylesheet.new :home_menu_screen do
       constrain(:bottom).equals(:superview, :bottom).minus(10),
     ]
 
-  style :order,
+  style :home_action,
+    font: UIFont.fontWithName('AvenirNext-Regular', size: 21.97)
+
+  style :order, extends: :home_action,
     title: "Order Collectible",
     constraints: [
       constrain(:left).equals(:superview, :left).plus(70),
       constrain(:center_y).equals(:superview, :center_y).minus(40)
     ]
 
-  style :collection,
+  style :collection, extends: :home_action,
     title: "My Collection",
     constraints: [
-      constrain(:left).equals(:superview, :left).plus(70),
+      constrain(:left).equals(:order, :left),
       constrain(:center_y).equals(:superview, :center_y).plus(40)
     ]
 

@@ -9,7 +9,8 @@ class OrderScreen < PM::Screen
       subview UILabel, :title
       subview UILabel, :byline
       subview UILabel, :features_title
-
+      subview UILabel, :features_left
+      subview UILabel, :features_right
     end
   end
 

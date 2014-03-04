@@ -14,11 +14,11 @@ class HomeMenuScreen < PM::Screen
   def will_appear
     @background.update
 
-    @close.on :touch do
-      close
+    @close.when_tapped do
+      close animated: false
     end
 
-    @order.on :touch do
+    @order.when_tapped do
       open OrderScreen, nav_bar: true, modal: true
     end
   end
