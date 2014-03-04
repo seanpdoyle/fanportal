@@ -8,9 +8,7 @@ class OrderScreen < PM::Screen
       subview UIImageView, :header
       subview UILabel, :title
       subview UILabel, :byline
-      subview UILabel, :features_title
-      subview UILabel, :features_left
-      subview UILabel, :features_right
+      @features = subview UIWebView, :features
     end
   end
 
@@ -19,4 +17,9 @@ class OrderScreen < PM::Screen
       title: "Cancel",
       action: :close
   end
+
+  def will_appear
+    @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
+  end
+
 end
