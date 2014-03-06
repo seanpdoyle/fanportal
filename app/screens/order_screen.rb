@@ -1,4 +1,4 @@
-class OrderScreen < PM::FormotionScreen
+class OrderScreen < PM::Screen
   title "Get this Collectible"
 
   stylesheet :order_screen
@@ -24,28 +24,5 @@ class OrderScreen < PM::FormotionScreen
       config.bounces       = false
       config.scrollEnabled = false
     end
-  end
-
-  def on_submit(_form)
-  end
-
-  def table_data
-    {
-      sections: [{
-        rows: [
-          title: "Goto",
-          type: :subform,
-          subform: {
-            title: 'Subform',
-            sections: [{
-              rows: [{
-                title: 'Mordor',
-                type: :static,
-              }]
-            }]
-          }
-        ]
-      }]
-    }
   end
 end

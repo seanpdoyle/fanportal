@@ -15,4 +15,8 @@ Motion::Project::App.setup do |app|
   app.name = 'fanportal'
 
   app.detect_dependencies = true
+
+  app.pods do
+    pod 'GRKBlurView'
+  end
 end
