@@ -29,7 +29,7 @@ Teacup::Stylesheet.new :order_screen do
   style :features,
     constraints: [
       :full_width,
-      constrain_height(200),
+      constrain_height(500),
       constrain_below(:header, 8),
       constrain(:left).equals(:superview, :left).plus(12)
     ]

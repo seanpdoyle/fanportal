@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'dotenv'
 
-gem 'ProMotion'
+gem 'ProMotion', '~> 1.1.1'
+gem 'formotion'
 
 gem 'bubble-wrap'
 gem 'motion-layout'

@@ -14,7 +14,5 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'fanportal'
 
-  app.pods do
-    pod 'GRKBlurView', '~> 1.0'
-  end
+  app.detect_dependencies = true
 end

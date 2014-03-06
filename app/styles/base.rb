@@ -1,5 +1,6 @@
 Teacup::Stylesheet.new :base do
-
+  import :sweettea
+  
   style :root,
     backgroundColor: :black.uicolor
 

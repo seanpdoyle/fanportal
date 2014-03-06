@@ -1,36 +1,94 @@
 <style>
-h1, li {
+h1, li, p {
+  font-family: 'AvenirNext-Regular';
+  font-size: 12px;
   line-height: 19px;
   color: #000;
 }
 
-h1 {
-  margin-top: 0;
-  margin-bottom: 0;
+.bold {
   font-family: 'AvenirNext-Bold';
-  font-size: 14px;
 }
 
-li {
-  font-family: 'AvenirNext-Regular';
-  font-size: 12px;
+.demi-bold {
+  font-family: 'AvenirNext-DemiBold';
+}
+
+h1 {
+  font-size: 14px;
 }
 
 ul {
   margin-top: 4px;
 }
 
+.fill-width {
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .features {
-  overflow: display;
+  overflow: hidden;
+  display: block;
+}
+
+.features:after {
+  float: none;
 }
 
 .features ul {
   width: 40%;
+  display: inline;
+
   padding-left: 20px;
   float: left;
 }
+
+.bordered {
+  border-top: solid 1px #CBCBCB;
+  border-bottom: solid 1px #CBCBCB;
+}
+
+.availability {
+  position: relative;
+  height: 70px;
+}
+
+.availability .price {
+  font-size: 18px;
+}
+
+.availability .delivery {
+  color: #666;
+  line-height: 0;
+}
+
+.quantity {
+  margin: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #f8f78f;
+  border-radius: 3px;
+}
+
+.availability .quantity {
+  position: absolute;
+  top: 25%;
+  right: 8px;
+}
+
+.autograph {
+  background-color: #f5f5f5;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 </style>
-<h1>Special Edition Features</h1>
+<h1 class="bold">Special Edition Features</h1>
 <section class="features">
   <ul>
     <li>Only 100 available</li>
@@ -42,4 +100,12 @@ ul {
     <li>Autographs signed by the band</li>
     <li>Personalized voice message from guitarist John Petrucci</li>
   </ul>
+</section>
+<section class="availability bordered fill-width">
+  <h1 class="price demi-bold">$25.00</h1>
+  <p class="delivery">Est. Delivery 04/23/14</p>
+  <p class="quantity demi-bold">100 Remaining</p>
+</section>
+<section class="autograph bordered fill-width">
+  <h1 class="bold">Customize Your Autograph</h1>
 </section>
