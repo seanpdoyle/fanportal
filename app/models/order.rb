@@ -1,6 +1,12 @@
 class Order
   attr_accessor :artistName, :message, :inscription
 
+  def initialize(options = {})
+    options.each do |field, value|
+      __send__("#{field}=", value)
+    end
+  end
+
   def messageRow
     Message.new(self)
   end

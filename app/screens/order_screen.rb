@@ -1,10 +1,10 @@
-class OrderScreen < PM::Screen
+class OrderScreen < ScrollViewScreen
   title "Get this Collectible"
 
   stylesheet :order_screen
 
   layout :action do
-    @scroll = subview UIScrollView, :scroll do
+    @scrollView = subview UIScrollView, :scroll do
       subview UIImageView, :header
       subview UILabel, :title
       @byline      = subview UILabel, :byline
@@ -19,25 +19,28 @@ class OrderScreen < PM::Screen
     set_nav_bar_button :left,
       title: "Cancel",
       action: :close
+
+    set_nav_bar_button :right,
+      title: "Submit",
+      action: :submit,
+      style: :done
+  end
+
+  def submit
+
   end
 
   def will_appear
+    super
     @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
 
-    @order ||= Order.new.tap do |order|
-      order.artistName = "Dream Theater"
-    end
+    @order ||= Order.new(artistName: "Dream Theater")
 
     self.loadOrder(@order)
-
-    # weird relayout bug, scrollView won't resize
-    1.seconds.later do
-      resizeScrollView
-    end
   end
 
   def on_return(args = {})
-    @order = args[:order]
+    @order = args.fetch(:order, @order)
     self.loadOrder(@order)
   end
 
@@ -46,10 +49,6 @@ class OrderScreen < PM::Screen
     @orderTable.reloadData
 
     @byline.text = "by #{order.artistName}"
-  end
-
-  def resizeScrollView
-    @scroll.contentSize = [ @scroll.frame.size.width, content_height(@scroll) + 20 ]
   end
 
   def tableView(tableView, cellForRowAtIndexPath: indexPath)

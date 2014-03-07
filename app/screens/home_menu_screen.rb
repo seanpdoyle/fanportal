@@ -21,5 +21,9 @@ class HomeMenuScreen < PM::Screen
     @order.when_tapped do
       open OrderScreen, nav_bar: true, modal: true
     end
+
+    @collection.when_tapped do
+      open CollectionScreen, nav_bar: true, modal: true
+    end
   end
 end

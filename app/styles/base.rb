@@ -10,11 +10,10 @@ Teacup::Stylesheet.new :base do
   style :modal,
     backgroundColor: :clear.uicolor
 
-  style :navButton,
-    titleColor: "37B755".uicolor
+  style :nav_button,
+    titleColor: "#37B755".uicolor
 
   style :scroll,
-    autoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight,
     constraints: [
       :full
     ]
@@ -26,5 +25,4 @@ Teacup::Stylesheet.new :base do
       :centered,
       :full_height
     ]
-
 end
