@@ -10,4 +10,8 @@ class Message
   def subtitle
     @order.message || "Write a personal message to #{@order.artistName} that will be delivered with your order"
   end
+
+  def screen
+    MessageEditScreen
+  end
 end

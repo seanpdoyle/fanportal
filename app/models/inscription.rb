@@ -10,4 +10,8 @@ class Inscription
   def subtitle
     @order.inscription || "What do you want #{@order.artistName} to write on your photo? Ex. \"Mike, Happy Birthday. Thanks for being our biggest fan!\""
   end
+
+  def screen
+    InscriptionEditScreen
+  end
 end

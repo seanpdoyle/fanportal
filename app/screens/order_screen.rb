@@ -24,11 +24,11 @@ class OrderScreen < PM::Screen
   def will_appear
     @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
 
-    @order = Order.new.tap do |order|
+    @order ||= Order.new.tap do |order|
       order.artistName = "Dream Theater"
     end
 
-    loadOrder(@order)
+    self.loadOrder(@order)
 
     # weird relayout bug, scrollView won't resize
     1.seconds.later do
@@ -36,8 +36,14 @@ class OrderScreen < PM::Screen
     end
   end
 
+  def on_return(args = {})
+    @order = args[:order]
+    self.loadOrder(@order)
+  end
+
   def loadOrder(order)
     @data = [order.inscriptionRow, order.messageRow]
+    @orderTable.reloadData
 
     @byline.text = "by #{order.artistName}"
   end
@@ -67,9 +73,6 @@ class OrderScreen < PM::Screen
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-    alert = UIAlertView.alloc.init
-    alert.message = "#{@data[indexPath.row]} tapped!"
-    alert.addButtonWithTitle "OK"
-    alert.show
+    open @data[indexPath.row].screen.new(order: @order)
   end
 end
