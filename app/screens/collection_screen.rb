@@ -15,8 +15,11 @@ class CollectionScreen < ScrollViewScreen
 
   def will_appear
     Collectible.all.each_with_index do |collectible, index|
-      view = CollectibleView.new(collectible: collectible)
+      view = ArtistCard.new(collectible: collectible)
       view.initWithFrame(frameFor(index))
+      view.on_tap do
+        viewCollectible(collectible)
+      end
       add_to scrollView, view
     end
     super
@@ -24,14 +27,14 @@ class CollectionScreen < ScrollViewScreen
 
   def frameFor(index)
     margin = 20
-    height = CollectibleView::HEIGHT
-    width  = CollectibleView::WIDTH
+    height = ArtistCard::HEIGHT
+    width  = ArtistCard::WIDTH
     offset = height + margin
 
     [[ margin / 2.0,  (offset * index) + margin ], [ width, height ]]
   end
 
-  def view_collectible(args = {})
-
+  def viewCollectible(collectible)
+    open CollectibleDetailsScreen.new(collectible: collectible, nav_bar: false), modal: true
   end
 end

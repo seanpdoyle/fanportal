@@ -1,4 +1,4 @@
-class CollectibleView < UIView
+class ArtistCard < UIView
   include PM::Styling
 
   IMAGE_HEIGHT  = 140
@@ -19,7 +19,7 @@ class CollectibleView < UIView
 
     @image = UIImageView.alloc.initWithFrame([[0,0], [WIDTH, IMAGE_HEIGHT]])
     set_attributes @image,
-      image: collectible.image,
+      image: collectible.artistImage,
       contentMode: UIViewContentModeTop,
       clipsToBounds: true
     self.addSubview(@image)

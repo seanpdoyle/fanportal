@@ -12,14 +12,6 @@ Teacup::Stylesheet.new :home_menu_screen do
     targetImage: "home/bg_metallica".uiimage,
     blurRadius: 15
 
-
-  style :close,
-    image: "home/ic_close",
-    constraints: [
-      constrain_left(10),
-      constrain_top(16)
-    ]
-
   style :logo,
     image: "home/bg_fpLogo",
     constraints: [

@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Setup the project
+
+set -e
+
+mkdir -p vendor/Downloaded/
+
+CHECKOUT_TO=vendor/Downloaded/ZoomRotatePanImageView
+
+if ! [ -e $CHECKOUT_TO ]; then
+  git clone https://github.com/bennythemink/ZoomRotatePanImageView $CHECKOUT_TO
+fi
+
+bundle install && rake pod:install

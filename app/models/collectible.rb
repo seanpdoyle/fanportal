@@ -19,7 +19,12 @@ class Collectible
     end
   end
 
-  def image
+  def artistImage
     "collectible/bg_collection_#{name.downcase.gsub(/\ +/, "_")}".uiimage
   end
+
+  def image
+    artistImage
+  end
+
 end
