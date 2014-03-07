@@ -5,7 +5,7 @@ Teacup::Stylesheet.new :order_screen do
     image: "order/bg_order_header",
     contentMode: UIViewContentModeScaleAspectFit,
     constraints: [
-      constrain(:top).equals(:scroll, :top)
+      constrain(:top).equals(:superview, :top)
     ]
 
   style :title,
@@ -29,8 +29,21 @@ Teacup::Stylesheet.new :order_screen do
   style :features,
     constraints: [
       :full_width,
-      constrain_height(500),
+      constrain_height(295),
       constrain_below(:header, 8),
       constrain(:left).equals(:superview, :left).plus(12)
+    ],
+    scrollView: {
+      bounces: false,
+      scrollEnabled: false
+    }
+
+  style :order_table,
+    scrollEnabled: false,
+    alwaysBounceVertical: false,
+    constraints: [
+      :full_width,
+      constrain_height(100),
+      constrain(:top).equals(:features, :bottom)
     ]
 end
