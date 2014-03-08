@@ -17,12 +17,14 @@ Teacup::Stylesheet.new :base do
     constraints: [
       :full
     ]
-    
+
   style :close,
     image: "home/ic_close",
     constraints: [
-      constrain_left(10),
-      constrain_top(16)
+      constrain_left(2),
+      constrain_top(4),
+      constrain_height(50),
+      constrain_width(50)
     ]
 
   style :background,
