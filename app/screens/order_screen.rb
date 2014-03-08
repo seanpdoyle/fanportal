@@ -7,11 +7,15 @@ class OrderScreen < ScrollViewScreen
     @scrollView = subview UIScrollView, :scroll do
       subview UIImageView, :header
       subview UILabel, :title
+      subview UILabel, :photo_title
+
       @byline      = subview UILabel, :byline
       @features    = subview UIWebView, :features
       @orderTable  = subview UITableView, :order_table,
                       delegate: self,
                       dataSource: self
+      @picker      = subview UIButton, :picker
+
     end
   end
 
@@ -37,6 +41,10 @@ class OrderScreen < ScrollViewScreen
     @order ||= Order.new(artistName: "Dream Theater")
 
     self.loadOrder(@order)
+
+    @picker.on_tap do
+      # open UIImagePickerController.new
+    end
   end
 
   def on_return(args = {})

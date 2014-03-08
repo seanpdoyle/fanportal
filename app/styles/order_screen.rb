@@ -46,4 +46,18 @@ Teacup::Stylesheet.new :order_screen do
       constrain_height(100),
       constrain(:top).equals(:features, :bottom)
     ]
+
+  style :photo_title,
+    text: "Select Photo",
+    textColor: :black.uicolor,
+    constraints: [
+      :full_width,
+      constrain_below(:order_table)
+    ]
+
+  style :picker,
+    image: "order/ic_upload".uiimage,
+    constraints: [
+      constrain_below(:photo_title)
+    ]
 end
