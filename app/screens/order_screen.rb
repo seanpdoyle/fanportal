@@ -40,7 +40,11 @@ class OrderScreen < ScrollViewScreen
   end
 
   def on_return(args = {})
-    @order = args.fetch(:order, @order)
+    [:message, :inscription].each do |key|
+      if text = args[key]
+        @order[key] = text
+      end
+    end
     self.loadOrder(@order)
   end
 

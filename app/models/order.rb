@@ -7,6 +7,10 @@ class Order
     end
   end
 
+  def []=(field, value)
+    __send__("#{field}=", value)
+  end
+
   def messageRow
     Message.new(self)
   end

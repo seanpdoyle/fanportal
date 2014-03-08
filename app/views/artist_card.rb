@@ -35,10 +35,10 @@ class ArtistCard < UIView
     set_attributes self,
       backgroundColor: :white.uicolor,
       layer: {
-        masksToBounds: true,
-        cornerRadius: 2,
         borderColor: "#c8c8c8".uicolor.CGColor,
         borderWidth: 0.5,
+        masksToBounds: true,
+        cornerRadius: 2,
         shadow_opacity: 0.15,
         # shadow_offset: 0.5,
         shadow_angle: 90,

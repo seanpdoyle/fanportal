@@ -2,22 +2,11 @@ class MessageEditScreen < OrderFormScreen
 
   title "Add Message"
 
-  def table_data
-    {
-      sections: [{
-        title: "Write a personal message to #{order.artistName}",
-        rows: [{
-          key: :message,
-          type: :text,
-          auto_capitalization: :none,
-          row_height: 200
-        }]
-      }]
-    }
+  def fieldName
+    :message
   end
 
-  def on_submit(_form)
-    data = _form.render
-    order.message = data[:message]
+  def promptText
+    "Write a personal message to #{order.artistName}"
   end
 end

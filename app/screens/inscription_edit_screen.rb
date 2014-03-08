@@ -1,22 +1,15 @@
 class InscriptionEditScreen < OrderFormScreen
   title "Add Inscription"
 
-  def table_data
-    {
-      sections: [{
-        title: "Write an inscription for your autograph",
-        rows: [{
-          key: :inscription,
-          type: :text,
-          auto_capitalization: :none,
-          row_height: 200
-        }]
-      }]
-    }
+  def maximumCharacterCount
+    80
   end
 
-  def on_submit(_form)
-    data = _form.render
-    order.inscription = data[:inscription]
+  def promptText
+    "Write an inscription for your autograph"
+  end
+
+  def fieldName
+    :inscription
   end
 end
