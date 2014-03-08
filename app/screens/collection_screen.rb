@@ -9,6 +9,7 @@ class CollectionScreen < ScrollViewScreen
 
   def on_init
     set_nav_bar_button :left,
+      title: "❮",
       action: :close,
       style: :done
   end
