@@ -1,12 +1,15 @@
 PODS:
+  - AGPhotoBrowser (1.1.0)
   - GRKBlurView (1.0)
   - UrbanAirship-iOS-SDK (3.0.3)
 
 DEPENDENCIES:
+  - AGPhotoBrowser
   - GRKBlurView
   - UrbanAirship-iOS-SDK (~> 3.0)
 
 SPEC CHECKSUMS:
+  AGPhotoBrowser: b190ebf2c6f2303f527df9570148f6671362daca
   GRKBlurView: b88f2c75f0debb034697b9d28a779bc1b8765baf
   UrbanAirship-iOS-SDK: 0c315cacb94346ee5bb348c8d305fb32f3768caa
 
