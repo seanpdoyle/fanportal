@@ -19,10 +19,15 @@ Motion::Project::App.setup do |app|
     pod 'UrbanAirship-iOS-SDK', '~> 3.0'
   end
 
+  app.name                 = "FanPortal"
+  app.identifier           = "com.fanportal.iphone"
   app.provisioning_profile = "provision/FanPortal_iPhone.mobileprovision"
 
   # Urban Airship framework setup
-  app.libs += ['/usr/lib/libz.dylib', '/usr/lib/libsqlite3.dylib']
+  app.libs += [
+    '/usr/lib/libz.dylib',
+    '/usr/lib/libsqlite3.dylib'
+  ]
 
   app.frameworks += [
     'AVFoundation',
