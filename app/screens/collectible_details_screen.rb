@@ -52,7 +52,7 @@ class CollectibleDetailsScreen < PM::Screen
   end
 
   def photoBrowser(photoBrowser, customizeImageView:imageView, forIndex:index)
-    imageView.image = collectible.imageURL.nsdata.uiimage
+    imageView.setImageWithURL(collectible.imageURL)
     imageView
   end
 
