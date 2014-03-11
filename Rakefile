@@ -15,8 +15,8 @@ Motion::Project::App.setup do |app|
   app.name = 'fanportal'
 
   app.pods do
-    pod 'AGPhotoBrowser'
     pod 'GRKBlurView'
+    pod 'GVPhotoBrowser'
     pod 'UrbanAirship-iOS-SDK', '~> 3.0'
   end
 
