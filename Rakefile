@@ -22,7 +22,11 @@ Motion::Project::App.setup do |app|
   app.name                 = "FanPortal"
   app.identifier           = "com.fanportal.iphone"
   app.provisioning_profile = "provision/FanPortal_iPhone.mobileprovision"
+  app.codesign_certificate = 'iPhone Developer: Kostas Nasis (6NK7DS8B4W)'
 
+  app.entitlements['aps-environment'] = 'development'
+  app.entitlements['get-task-allow'] = true
+  
   app.icons = [
     'icons/AppIcon29x29.png',
     'icons/AppIcon60x60@2x.png',
