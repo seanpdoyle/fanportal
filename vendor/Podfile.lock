@@ -1,16 +1,21 @@
 PODS:
   - GRKBlurView (1.0)
   - GVPhotoBrowser (0.7.0)
+  - SDWebImage (3.5.4):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.5.4)
   - UrbanAirship-iOS-SDK (3.0.3)
 
 DEPENDENCIES:
   - GRKBlurView
   - GVPhotoBrowser
+  - SDWebImage
   - UrbanAirship-iOS-SDK (~> 3.0)
 
 SPEC CHECKSUMS:
   GRKBlurView: b88f2c75f0debb034697b9d28a779bc1b8765baf
   GVPhotoBrowser: eff588ef5f0957c7d931f7a4f68a292a8076a0cf
+  SDWebImage: 1a62010700adbba823b621fc217906739dbf6aa5
   UrbanAirship-iOS-SDK: 0c315cacb94346ee5bb348c8d305fb32f3768caa
 
 COCOAPODS: 0.29.0
