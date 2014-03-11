@@ -24,6 +24,12 @@ Motion::Project::App.setup do |app|
   app.provisioning_profile = "provision/FanPortal_iPhone.mobileprovision"
   app.codesign_certificate = "iPhone Developer: Kostas Nasis (6NK7DS8B4W)"
 
+  app.seed_id = "E4Y3VW47MT"
+  app.entitlements['application-identifier'] = app.seed_id + '.' + app.identifier
+  app.entitlements['keychain-access-groups'] = [
+    app.seed_id + '.' + app.identifier
+  ]
+
   app.entitlements['aps-environment'] = 'development'
   app.entitlements['get-task-allow'] = true
 
