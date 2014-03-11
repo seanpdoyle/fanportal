@@ -22,6 +22,7 @@ Motion::Project::App.setup do |app|
   app.name                 = "FanPortal"
   app.identifier           = "com.fanportal.iphone"
   app.provisioning_profile = "provision/FanPortal_iPhone.mobileprovision"
+  app.codesign_certificate = "iPhone Developer: Kostas Nasis (5NEUD6LK25)"
 
   # Urban Airship framework setup
   app.libs += [
