@@ -15,13 +15,12 @@ class CollectibleDetailsScreen < PM::Screen
 
   layout :root do
     @close      = subview UIButton, :close
-    @image      = subview ZoomRotatePanImageView, :image
+    @image      = subview UIImageView, :image
     @playButton = subview UIButton, :play_button
   end
 
   def will_appear
     @image.image = collectible.imageURL.nsdata.uiimage
-    @image.reset
 
     @close.on_tap do
       if modal?

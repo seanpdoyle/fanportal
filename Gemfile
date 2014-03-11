@@ -4,9 +4,8 @@ gem 'rake'
 gem 'dotenv'
 
 gem 'ProMotion'
-gem 'formotion'
 
-gem 'bubble-wrap'
+gem 'bubble-wrap', '~> 1.5'
 gem 'motion-layout'
 gem 'motion_model'
 gem 'sugarcube', '~> 1.5', :require => 'sugarcube-all' # hash-rocket for CI

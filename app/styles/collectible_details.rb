@@ -2,9 +2,11 @@ Teacup::Stylesheet.new :collectible_details do
   import :base
 
   style :image,
+    contentMode: UIViewContentModeScaleAspectFill,
     constraints: [
-      constrain_height(400),
-      constrain(:top).equals(:superview, :top)
+      :center,
+      constrain(:left).equals(:superview, :left).plus(5),
+      constrain(:right).equals(:superview, :right).minus(5)
     ]
 
   style :play_button,

@@ -18,6 +18,10 @@ class OrderFormScreen < PM::Screen
       action: :cancel
   end
 
+  def will_appear
+    @textField.becomeFirstResponder
+  end
+
   def maximumCharacterCount
     140
   end

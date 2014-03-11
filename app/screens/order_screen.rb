@@ -32,7 +32,13 @@ class OrderScreen < ScrollViewScreen
   end
 
   def submit
-    close
+    if @order.valid?
+      @alert = App.alert("Submitting...")
+      @order.submit do
+        @alert.dismiss
+        close
+      end
+    end
   end
 
   def will_appear
@@ -52,12 +58,13 @@ class OrderScreen < ScrollViewScreen
   end
 
   def imagePickerController(picker, didFinishPickingMediaWithInfo:options)
-    @selectedImageURL = options["UIImagePickerControllerReferenceURL"]
-    @selectedImage    = options["UIImagePickerControllerOriginalImage"]
+    puts options
+
+    @order.image   = options["UIImagePickerControllerOriginalImage"]
 
     @imagePicker.imageView.contentMode = UIViewContentModeScaleAspectFill
-    @imagePicker.setImage(@selectedImage, forState: UIControlStateNormal)
-    @imagePicker.setImage(@selectedImage, forState: UIControlStateSelected)
+    @imagePicker.setImage(@order.image, forState: UIControlStateNormal)
+    @imagePicker.setImage(@order.image, forState: UIControlStateSelected)
 
     picker.dismissModalViewControllerAnimated:true
   end
@@ -67,7 +74,6 @@ class OrderScreen < ScrollViewScreen
   end
 
   def on_return(args = {})
-    puts "Returned to OrderScreen"
     [:message, :inscription].each do |key|
       if text = args[key]
         @order[key] = text
