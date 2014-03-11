@@ -16,7 +16,10 @@ Motion::Project::App.setup do |app|
 
   app.pods do
     pod 'GRKBlurView'
+    pod 'UrbanAirship-iOS-SDK', '~> 3.0'
   end
+
+  app.provisioning_profile = "provision/FanPortal_iPhone.mobileprovision"
 
   # Urban Airship framework setup
   app.libs += ['/usr/lib/libz.dylib', '/usr/lib/libsqlite3.dylib']
@@ -36,9 +39,4 @@ Motion::Project::App.setup do |app|
   ]
 
   app.vendor_project("vendor/Git/ZoomRotatePanImageView", :static)
-
-  app.vendor_project('vendor/UrbanAirship', :static,
-    products: ['libUAirship-1.2.2.a'],
-    headers_dir: 'Common'
-  )
 end

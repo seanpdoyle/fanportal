@@ -20,14 +20,11 @@ class AppDelegate < PM::Delegate
   end
 
   def setupUrbanAirship(launchOptions)
-    takeOffOptions = NSMutableDictionary.alloc.init
-    takeOffOptions.setValue( launchOptions, forKey: UAirshipTakeOffOptionsLaunchOptionsKey )
+    UAirship.takeOff(UAConfig.defaultConfig)
 
-    UAirship.takeOff( takeOffOptions )
-
-    UIApplication.sharedApplication.registerForRemoteNotificationTypes(
-      UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound
-    )
+    UAPush.shared.notificationTypes = UIRemoteNotificationTypeBadge |
+                                      UIRemoteNotificationTypeSound |
+                                      UIRemoteNotificationTypeAlert
   end
 
   def setAppearanceDefaults
