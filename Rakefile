@@ -18,5 +18,9 @@ Motion::Project::App.setup do |app|
     pod 'GRKBlurView'
   end
 
+  app.frameworks += [
+    'AVFoundation'
+  ]
+
   app.vendor_project("vendor/Git/ZoomRotatePanImageView", :static)
 end

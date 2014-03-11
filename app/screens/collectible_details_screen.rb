@@ -1,4 +1,14 @@
 class CollectibleDetailsScreen < PM::Screen
+  class NullPlayer
+    attr_accessor :delegate
+
+    def play
+      unless delegate.nil?
+        delegate.audioPlayerDidFinishPlaying(self, successfully:false)
+      end
+    end
+  end
+
   attr_accessor :collectible
 
   stylesheet :collectible_details
@@ -10,7 +20,7 @@ class CollectibleDetailsScreen < PM::Screen
   end
 
   def will_appear
-    @image.image = collectible.image
+    @image.image = collectible.imageURL.nsdata.uiimage
     @image.reset
 
     @close.on_tap do
@@ -18,14 +28,36 @@ class CollectibleDetailsScreen < PM::Screen
     end
 
     @playButton.on_tap do
-      togglePlayButton
-      1.second.later do
-        togglePlayButton
-      end
+      playCollectibleAudio
     end
   end
 
+  def playCollectibleAudio
+    togglePlayButton
+    audioClip.play
+  end
+
+  def audioPlayerDidFinishPlaying(player, successfully:wasSuccess)
+    togglePlayButton
+  end
+
+  def audioPlayerDecodeErrorDidOccur(player, error:withError)
+    puts withError.localizedDescription
+  end
+
   private
+
+  def audioClip
+    @audioClip ||= begin
+      error = Pointer.new(:object)
+      player = AVAudioPlayer.alloc.initWithContentsOfURL(collectible.audioURL,error:error) || NullPlayer.new
+      if error = error.value
+        puts error.localizedDescription
+      end
+      player.delegate = self
+      player
+    end
+  end
 
   def togglePlayButton
     if stopped?
