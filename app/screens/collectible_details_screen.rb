@@ -14,14 +14,13 @@ class CollectibleDetailsScreen < PM::Screen
   stylesheet :collectible_details
 
   layout :root do
+    @image      = subview GVPhotoBrowser, :image, delegate: self, dataSource: self
     @close      = subview UIButton, :close
-    @image      = subview UIImageView, :image
     @playButton = subview UIButton, :play_button
   end
 
   def will_appear
-    @image.image = collectible.imageURL.nsdata.uiimage
-
+    @image.start
     @close.on_tap do
       if modal?
         close
@@ -46,6 +45,18 @@ class CollectibleDetailsScreen < PM::Screen
 
   def audioPlayerDecodeErrorDidOccur(player, error:withError)
     puts withError.localizedDescription
+  end
+
+  def numberOfPhotosInPhotoBrowser(photoBrowser)
+    1
+  end
+
+  def photoBrowser(photoBrowser, customizeImageView:imageView, forIndex:index)
+    imageView.image = collectible.imageURL.nsdata.uiimage
+    imageView
+  end
+
+  def photoBrowser(photoBrowser, didSwitchToIndex:index)
   end
 
   private
