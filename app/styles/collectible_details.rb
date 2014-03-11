@@ -4,7 +4,7 @@ Teacup::Stylesheet.new :collectible_details do
   style :image,
     contentMode: UIViewContentModeScaleAspectFill,
     constraints: [
-      :center,
+      :centerer,
       constrain(:left).equals(:superview, :left).plus(5),
       constrain(:right).equals(:superview, :right).minus(5)
     ]
