@@ -19,7 +19,7 @@ Teacup::Stylesheet.new :order_form_screen do
   style :text_field,
     constraints: [
       :full_width,
-      constrain_height(250),
+      constrain_height(240),
       constrain_below(:prompt)
     ]
 
