@@ -5,7 +5,7 @@ class OrderFormScreen < PM::Screen
 
   layout :action do
     subview UILabel, :prompt, text: promptText
-    @textField   = subview UITextField, :text_field
+    @textField   = subview UITextView, :text_field
   end
 
   def on_init

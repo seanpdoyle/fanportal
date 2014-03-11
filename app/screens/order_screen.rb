@@ -8,14 +8,15 @@ class OrderScreen < ScrollViewScreen
       subview UIImageView, :header
       subview UILabel, :title
       subview UILabel, :photo_title
-
       @byline      = subview UILabel, :byline
       @features    = subview UIWebView, :features
       @orderTable  = subview UITableView, :order_table,
                       delegate: self,
                       dataSource: self
-      @picker      = subview UIButton, :picker
 
+      @imagesView = subview UIView, :image_picker do
+        @imagePicker   = subview UIButton, :image_picker_button
+      end
     end
   end
 
@@ -36,18 +37,37 @@ class OrderScreen < ScrollViewScreen
 
   def will_appear
     super
+
     @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
 
     @order ||= Order.new(artistName: "Dream Theater")
 
-    self.loadOrder(@order)
-
-    @picker.on_tap do
-      # open UIImagePickerController.new
+    @imagePicker.on_tap do
+      controller = UIImagePickerController.alloc.init
+      controller.delegate = self
+      open controller, modal: true
     end
+
+    self.loadOrder(@order)
+  end
+
+  def imagePickerController(picker, didFinishPickingMediaWithInfo:options)
+    @selectedImageURL = options["UIImagePickerControllerReferenceURL"]
+    @selectedImage    = options["UIImagePickerControllerOriginalImage"]
+
+    @imagePicker.imageView.contentMode = UIViewContentModeScaleAspectFill
+    @imagePicker.setImage(@selectedImage, forState: UIControlStateNormal)
+    @imagePicker.setImage(@selectedImage, forState: UIControlStateSelected)
+
+    picker.dismissModalViewControllerAnimated:true
+  end
+
+  def imagePickerControllerDidCancel(picker)
+    picker.dismissModalViewControllerAnimated:true
   end
 
   def on_return(args = {})
+    puts "Returned to OrderScreen"
     [:message, :inscription].each do |key|
       if text = args[key]
         @order[key] = text
