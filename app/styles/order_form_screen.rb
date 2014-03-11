@@ -17,6 +17,7 @@ Teacup::Stylesheet.new :order_form_screen do
     ]
 
   style :text_field,
+    font: UIFont.fontWithName("AvenirNext-Regular", size: 16),
     constraints: [
       :full_width,
       constrain_height(240),
