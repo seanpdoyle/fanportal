@@ -24,6 +24,19 @@ Motion::Project::App.setup do |app|
   app.provisioning_profile = "provision/FanPortal_iPhone.mobileprovision"
   app.codesign_certificate = "iPhone Developer: Kostas Nasis (5NEUD6LK25)"
 
+  app.icons = [
+    'icons/AppIcon29x29.png',
+    'icons/AppIcon60x60@2x.png',
+    'icons/AppIcon29x29@2x.png ',
+    'icons/AppIcon76x76.png',
+    'icons/AppIcon40x40.png',
+    'icons/AppIcon76x76@2x.png',
+    'icons/AppIcon40x40@2x.png',
+    'icons/iTunesArtwork.png',
+    'icons/AppIcon60x60.png',
+    'icons/iTunesArtwork@2x.png'
+  ]
+
   # Urban Airship framework setup
   app.libs += [
     '/usr/lib/libz.dylib',
