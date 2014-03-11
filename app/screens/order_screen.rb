@@ -32,7 +32,7 @@ class OrderScreen < ScrollViewScreen
   end
 
   def submit
-
+    close
   end
 
   def will_appear

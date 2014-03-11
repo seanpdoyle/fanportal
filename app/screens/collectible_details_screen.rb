@@ -24,7 +24,11 @@ class CollectibleDetailsScreen < PM::Screen
     @image.reset
 
     @close.on_tap do
-      close
+      if modal?
+        close
+      else
+        open_root_screen HomeScreen
+      end
     end
 
     @playButton.on_tap do
@@ -50,7 +54,7 @@ class CollectibleDetailsScreen < PM::Screen
   def audioClip
     @audioClip ||= begin
       error = Pointer.new(:object)
-      player = AVAudioPlayer.alloc.initWithContentsOfURL(collectible.audioURL,error:error) || NullPlayer.new
+      player = AVAudioPlayer.alloc.initWithData(collectible.audioURL.nsdata,error:error) || NullPlayer.new
       if error = error.value
         puts error.localizedDescription
       end

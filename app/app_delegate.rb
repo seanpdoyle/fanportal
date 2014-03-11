@@ -1,8 +1,33 @@
 class AppDelegate < PM::Delegate
 
   def on_load(app, options)
+    setupUrbanAirship(options)
     setAppearanceDefaults
     open HomeScreen
+  end
+
+  def on_push_notification(notification, launched)
+    open(
+      CollectibleDetailsScreen.new(
+        collectible: Collectible.all.first,
+        nav_bar: false
+      )
+    )
+  end
+
+  def application(application, didRegisterForRemoteNotificationsWithDeviceToken:deviceToken)
+    UAirship.shared.registerDeviceToken( deviceToken )
+  end
+
+  def setupUrbanAirship(launchOptions)
+    takeOffOptions = NSMutableDictionary.alloc.init
+    takeOffOptions.setValue( launchOptions, forKey: UAirshipTakeOffOptionsLaunchOptionsKey )
+
+    UAirship.takeOff( takeOffOptions )
+
+    UIApplication.sharedApplication.registerForRemoteNotificationTypes(
+      UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound
+    )
   end
 
   def setAppearanceDefaults
