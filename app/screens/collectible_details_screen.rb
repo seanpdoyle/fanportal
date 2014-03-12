@@ -64,6 +64,10 @@ class CollectibleDetailsScreen < PM::Screen
   def photoBrowser(photoBrowser, didSwitchToIndex:index)
   end
 
+  def preferredStatusBarStyle
+    UIStatusBarStyleLightContent
+  end
+
   private
 
   def clearImageCache
