@@ -4,6 +4,10 @@ class OrderScreen < ScrollViewScreen
   stylesheet :order_screen
 
   layout :action do
+    @picker = FDTakeController.alloc.init
+    @picker.delegate = self
+    @picker.viewControllerForPresentingImagePickerController = self
+
     @scrollView = subview UIScrollView, :scroll do
       subview UIImageView, :header
       subview UILabel, :title
@@ -25,7 +29,7 @@ class OrderScreen < ScrollViewScreen
       title: "Cancel",
       action: :close
 
-    set_nav_bar_button :right,
+    @submitButton = set_nav_bar_button :right,
       title: "Submit",
       action: :submit,
       style: :done
@@ -34,20 +38,13 @@ class OrderScreen < ScrollViewScreen
   def will_appear
     super
 
+    @imagePicker.on_tap { @picker.takePhotoOrChooseFromLibrary }
+
     @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
 
     @order ||= Order.new(artistName: "Linkin Park")
 
-
     self.loadOrder(@order)
-  end
-
-  def on_appear
-    @picker = FDTakeController.alloc.init
-    @picker.delegate = self
-    @picker.viewControllerForPresentingImagePickerController = self
-
-    @imagePicker.on_tap { @picker.takePhotoOrChooseFromLibrary }
   end
 
   def submit
@@ -80,6 +77,8 @@ class OrderScreen < ScrollViewScreen
 
     @imagePicker.setImage(image, forState: UIControlStateNormal)
     @imagePicker.setImage(image, forState: UIControlStateSelected)
+
+    @submitButton.enabled = @order.valid?
   end
 
   # FDTakeDelegate
@@ -101,7 +100,7 @@ class OrderScreen < ScrollViewScreen
   end
 
   # UITableViewDelegate
-  
+
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     @reuseIdentifier ||= "CELL_IDENTIFIER"
 
