@@ -20,6 +20,8 @@ class CollectibleDetailsScreen < PM::Screen
   end
 
   def will_appear
+    clearImageCache
+
     self.view.bringSubviewToFront(@close)
     self.view.bringSubviewToFront(@playButton)
 
@@ -62,7 +64,19 @@ class CollectibleDetailsScreen < PM::Screen
   def photoBrowser(photoBrowser, didSwitchToIndex:index)
   end
 
+  def preferredStatusBarStyle
+    UIStatusBarStyleLightContent
+  end
+
   private
+
+  def clearImageCache
+    SDImageCache.sharedImageCache.tap do |cache|
+      cache.clearMemory
+      cache.clearDisk
+      cache.cleanDisk
+    end
+  end
 
   def audioClip
     @audioClip ||= begin
