@@ -1,10 +1,12 @@
 class Order
   ENDPOINT = "http://aries.neusis.com:9292/v1/orders".freeze
   class << self
-    attr_accessor :deviceToken
+    def deviceToken=(token)
+      @deviceToken = token
+    end
 
-    def setDeviceToken(token)
-      self.deviceToken = token
+    def deviceToken
+      @deviceToken
     end
   end
 

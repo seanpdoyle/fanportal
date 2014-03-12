@@ -16,7 +16,7 @@ class AppDelegate < PM::Delegate
   end
 
   def application(application, didRegisterForRemoteNotificationsWithDeviceToken:deviceToken)
-    Order.setDeviceToken(deviceToken)
+    Order.deviceToken = deviceToken
     UAPush.shared.registerDeviceToken(deviceToken)
   end
 
