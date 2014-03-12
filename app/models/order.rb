@@ -2,6 +2,10 @@ class Order
   ENDPOINT = "http://aries.neusis.com:9292/v1/orders".freeze
   class << self
     attr_accessor :deviceToken
+
+    def setDeviceToken(token)
+      self.deviceToken = token
+    end
   end
 
   attr_accessor :artistName, :message, :inscription, :image
