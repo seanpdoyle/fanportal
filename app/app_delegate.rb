@@ -17,7 +17,7 @@ class AppDelegate < PM::Delegate
 
   def application(application, didRegisterForRemoteNotificationsWithDeviceToken:deviceToken)
     Order.deviceToken = deviceToken
-    UAPush.shared.registerDeviceToken( deviceToken )
+    UAPush.shared.registerDeviceToken(deviceToken)
   end
 
   def setupUrbanAirship(launchOptions)

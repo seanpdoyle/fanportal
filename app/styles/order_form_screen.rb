@@ -4,7 +4,7 @@ Teacup::Stylesheet.new :order_form_screen do
   style :prompt,
     textColor: "#b3b3b3".uicolor,
     textAlignment: NSTextAlignmentCenter,
-    font: UIFont.fontWithName("AvenirNext-Medium", size: 14),
+    font: UIFont.fontWithName("AvenirNext-Medium", size: 16),
     backgroundColor: :white.uicolor,
     layer: {
       borderColor: "#c8c8c8".uicolor.CGColor,

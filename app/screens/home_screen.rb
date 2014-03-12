@@ -11,4 +11,8 @@ class HomeScreen < PM::Screen
       open HomeMenuScreen, modal: true, animated: false
     end
   end
+
+  def preferredStatusBarStyle
+    UIStatusBarStyleLightContent
+  end
 end

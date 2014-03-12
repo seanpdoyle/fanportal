@@ -75,7 +75,6 @@ Teacup::Stylesheet.new :order_screen do
     backgroundColor: :white.uicolor,
     image: "order/ic_upload".uiimage,
     contentMode: UIViewContentModeCenter | UIViewContentModeScaleAspectFill,
-    clipToBounds: true,
     constraints: [
       constrain_width(113),
       constrain_height(73),

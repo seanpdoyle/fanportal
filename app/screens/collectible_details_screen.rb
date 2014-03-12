@@ -20,6 +20,9 @@ class CollectibleDetailsScreen < PM::Screen
   end
 
   def will_appear
+    self.view.bringSubviewToFront(@close)
+    self.view.bringSubviewToFront(@playButton)
+
     @image.start
     @close.on_tap do
       if modal?

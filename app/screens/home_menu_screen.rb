@@ -26,4 +26,8 @@ class HomeMenuScreen < PM::Screen
       open CollectionScreen, nav_bar: true, modal: true
     end
   end
+
+  def preferredStatusBarStyle
+    UIStatusBarStyleLightContent
+  end
 end
