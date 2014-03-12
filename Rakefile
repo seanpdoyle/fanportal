@@ -15,6 +15,7 @@ Motion::Project::App.setup do |app|
   app.name = 'fanportal'
 
   app.pods do
+    pod 'FDTake'
     pod 'SDWebImage'
     pod 'GRKBlurView'
     pod 'GVPhotoBrowser'
@@ -57,6 +58,7 @@ Motion::Project::App.setup do |app|
   ]
 
   app.frameworks += [
+    'AssetsLibrary',
     'AVFoundation',
     'Security',
     'CFNetwork',

@@ -31,6 +31,25 @@ class OrderScreen < ScrollViewScreen
       style: :done
   end
 
+  def will_appear
+    super
+
+    @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
+
+    @order ||= Order.new(artistName: "Linkin Park")
+
+
+    self.loadOrder(@order)
+  end
+
+  def on_appear
+    @picker = FDTakeController.alloc.init
+    @picker.delegate = self
+    @picker.viewControllerForPresentingImagePickerController = self
+
+    @imagePicker.on_tap { @picker.takePhotoOrChooseFromLibrary }
+  end
+
   def submit
     if @order.valid?
       @alert = App.alert("Submitting...")
@@ -39,38 +58,6 @@ class OrderScreen < ScrollViewScreen
         close
       end
     end
-  end
-
-  def will_appear
-    super
-
-    @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
-
-    @order ||= Order.new(artistName: "Dream Theater")
-
-    @imagePicker.on_tap do
-      controller = UIImagePickerController.alloc.init
-      controller.delegate = self
-      open controller, modal: true
-    end
-
-    self.loadOrder(@order)
-  end
-
-  def imagePickerController(picker, didFinishPickingMediaWithInfo:options)
-    puts options
-
-    @order.image   = options["UIImagePickerControllerOriginalImage"]
-
-    @imagePicker.imageView.contentMode = UIViewContentModeScaleAspectFill
-    @imagePicker.setImage(@order.image, forState: UIControlStateNormal)
-    @imagePicker.setImage(@order.image, forState: UIControlStateSelected)
-
-    picker.dismissModalViewControllerAnimated:true
-  end
-
-  def imagePickerControllerDidCancel(picker)
-    picker.dismissModalViewControllerAnimated:true
   end
 
   def on_return(args = {})
@@ -82,13 +69,39 @@ class OrderScreen < ScrollViewScreen
     self.loadOrder(@order)
   end
 
+
   def loadOrder(order)
     @data = [order.inscriptionRow, order.messageRow]
     @orderTable.reloadData
 
     @byline.text = "by #{order.artistName}"
+
+    image = @order.image || "order/ic_upload".uiimage
+
+    @imagePicker.setImage(image, forState: UIControlStateNormal)
+    @imagePicker.setImage(image, forState: UIControlStateSelected)
   end
 
+  # FDTakeDelegate
+
+  def takeController(controller, didCancelAfterAttempting:madeAttempt)
+    resizeScrollView
+  end
+
+  def takeController(controller, didFailAfterAttempting:madeAttempt)
+    resizeScrollView
+  end
+
+  def takeController(controller, gotPhoto:photo, withInfo:info)
+    puts info
+
+    @order.image   = photo
+
+    self.loadOrder(@order)
+  end
+
+  # UITableViewDelegate
+  
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     @reuseIdentifier ||= "CELL_IDENTIFIER"
 

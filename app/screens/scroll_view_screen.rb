@@ -11,6 +11,6 @@ class ScrollViewScreen < PM::Screen
   end
 
   def resizeScrollView
-    scrollView.contentSize = [ scrollView.frame.size.width, content_height(scrollView) + 20 ]
+    scrollView.contentSize = [ scrollView.frame.size.width, content_height(scrollView) ]
   end
 end
