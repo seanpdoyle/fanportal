@@ -22,7 +22,7 @@ Teacup::Stylesheet.new :base do
     image: "home/ic_close",
     constraints: [
       constrain_left(2),
-      constrain_top(4),
+      constrain_top(18),
       constrain_height(50),
       constrain_width(50)
     ]
