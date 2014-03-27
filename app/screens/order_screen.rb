@@ -49,10 +49,14 @@ class OrderScreen < ScrollViewScreen
 
   def submit
     if @order.valid?
-      @alert = App.alert("Submitting...")
-      @order.submit do
+      @alert = App.alert("Placing Order, please wait...")
+      @order.submit(->{
         @alert.dismiss
         close
+      }.weak!, onFailure: ->{
+        @alert.dismiss
+        App.alert("Order Failed!")
+      }.weak!) do
       end
     end
   end
@@ -73,10 +77,13 @@ class OrderScreen < ScrollViewScreen
 
     @byline.text = "by #{order.artistName}"
 
-    image = @order.image || "order/ic_upload".uiimage
+    @order.withImage do |full_resolution|
+      image = full_resolution || "order/ic_upload".uiimage
 
-    @imagePicker.setImage(image, forState: UIControlStateNormal)
-    @imagePicker.setImage(image, forState: UIControlStateSelected)
+      @imagePicker.setImage(image, forState: UIControlStateNormal)
+      @imagePicker.setImage(image, forState: UIControlStateSelected)
+    end
+
 
     @submitButton.enabled = @order.valid?
   end
@@ -94,7 +101,7 @@ class OrderScreen < ScrollViewScreen
   def takeController(controller, gotPhoto:photo, withInfo:info)
     puts info
 
-    @order.image   = photo
+    @order.imageURL= info["UIImagePickerControllerReferenceURL"]
 
     self.loadOrder(@order)
   end
