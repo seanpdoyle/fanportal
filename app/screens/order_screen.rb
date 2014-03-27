@@ -80,8 +80,7 @@ class OrderScreen < ScrollViewScreen
     @order.withImage do |full_resolution|
       image = full_resolution || "order/ic_upload".uiimage
 
-      @imagePicker.setImage(image, forState: UIControlStateNormal)
-      @imagePicker.setImage(image, forState: UIControlStateSelected)
+      @imagePicker.imageView.image = image
     end
 
 
