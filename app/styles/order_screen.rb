@@ -72,8 +72,8 @@ Teacup::Stylesheet.new :order_screen do
     ]
 
   style :image_picker_button,
-    backgroundColor: :white.uicolor,
     image: "order/ic_upload".uiimage,
+    backgroundColor: :white.uicolor,
     contentMode: UIViewContentModeScaleAspectFit,
     constraints: [
       constrain_width(113),

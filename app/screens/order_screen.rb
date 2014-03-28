@@ -38,7 +38,7 @@ class OrderScreen < ScrollViewScreen
   def will_appear
     super
 
-    @imagePicker.on_tap { @picker.takePhotoOrChooseFromLibrary }
+    @imagePicker.when_tapped { @picker.takePhotoOrChooseFromLibrary }
 
     @features.loadRequest NSURLRequest.requestWithURL("features.html".resource_url)
 
@@ -77,12 +77,11 @@ class OrderScreen < ScrollViewScreen
 
     @byline.text = "by #{order.artistName}"
 
-    @order.withImage do |full_resolution|
-      image = full_resolution || "order/ic_upload".uiimage
-
-      @imagePicker.imageView.image = image
+    if @order.image.nil?
+      @imagePicker.imageView.image = "order/ic_upload".uiimage
+    else
+      @imagePicker.imageView.image = @order.image
     end
-
 
     @submitButton.enabled = @order.valid?
   end
@@ -100,7 +99,7 @@ class OrderScreen < ScrollViewScreen
   def takeController(controller, gotPhoto:photo, withInfo:info)
     puts info
 
-    @order.imageURL= info["UIImagePickerControllerReferenceURL"]
+    @order.image = photo
 
     self.loadOrder(@order)
   end

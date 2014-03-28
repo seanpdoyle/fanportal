@@ -6,8 +6,6 @@ gem 'dotenv'
 gem 'ProMotion'
 
 gem 'bubble-wrap', '~> 1.5'
-gem 'motion-layout'
-gem 'motional'
 gem 'motion_model'
 gem 'sugarcube', '~> 1.5', :require => 'sugarcube-all' # hash-rocket for CI
 gem 'teacup'

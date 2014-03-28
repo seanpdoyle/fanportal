@@ -10,7 +10,7 @@ class Order
     end
   end
 
-  attr_accessor :artistName, :message, :inscription, :imageURL
+  attr_accessor :artistName, :message, :inscription, :image
 
   def initialize(options = {})
     options.each do |field, value|
@@ -18,26 +18,20 @@ class Order
     end
   end
 
-  def withImage(&block)
-    if imageURL.nil?
-      block.call(nil)
-    else
-      MotionAL::Asset.find_by_url(imageURL) do |asset|
-        image = UIImage.imageWithCGImage(asset.full_resolution_image)
-        block.call(image) unless block.nil?
-      end
-    end
-  end
-
   def submit(success, onFailure:failure)
-    withImage do |image|
-      data = { payload: fields }
+    data = { payload: fields }
 
-      unless image.nil?
-        data[:files] = {photo: photoWithImage(image)}
+    unless image.nil?
+      data[:files] = {photo: photo}
+    end
+
+    BW::HTTP.post(ENDPOINT, data) do |response|
+      if response.ok?
+        success.call unless success.nil?
+      else
+        puts response
+        failure.call unless failure.nil?
       end
-
-      postToServer(data, success, failure)
     end
   end
 
@@ -59,17 +53,6 @@ class Order
 
   private
 
-  def postToServer(data, success, failure)
-    BW::HTTP.post(ENDPOINT, data) do |response|
-      if response.ok?
-        success.call unless success.nil?
-      else
-        puts response
-        failure.call unless failure.nil?
-      end
-    end
-  end
-
   def fields
     {
       message:       message.to_s.strip,
@@ -78,7 +61,7 @@ class Order
     }
   end
 
-  def photoWithImage(image)
+  def photo
     {
       data: image.nsdata,
       filename: "order-image.png",
