@@ -3,6 +3,8 @@ class OrderScreen < ScrollViewScreen
 
   stylesheet :order_screen
 
+  attr_reader :order
+
   layout :action do
     @picker = FDTakeController.alloc.init
     @picker.delegate = self
@@ -78,9 +80,14 @@ class OrderScreen < ScrollViewScreen
     @byline.text = "by #{order.artistName}"
 
     if @order.image.nil?
-      @imagePicker.imageView.image = "order/ic_upload".uiimage
+      @imagePicker.imageView.contentMode = UIViewContentModeCenter
     else
-      @imagePicker.imageView.image = @order.image
+      puts "Filling with: #{@order.image}"
+      @imagePicker.imageView.contentMode = UIViewContentModeScaleAspectFit
+
+      0.1.seconds.later do
+        @imagePicker.imageView.image = @order.image
+      end
     end
 
     @submitButton.enabled = @order.valid?
@@ -100,8 +107,6 @@ class OrderScreen < ScrollViewScreen
     puts info
 
     @order.image = photo
-
-    self.loadOrder(@order)
   end
 
   # UITableViewDelegate
