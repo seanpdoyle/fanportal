@@ -69,7 +69,6 @@ class OrderScreen < ScrollViewScreen
         @order[key] = text
       end
     end
-    self.loadOrder(@order)
   end
 
 
